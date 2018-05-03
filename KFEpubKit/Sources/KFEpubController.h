@@ -61,7 +61,6 @@
 
 - (instancetype)initWithEpubURL:(NSURL *)epubURL andDestinationFolder:(NSURL *)destinationURL;
 
-- (void)openAsynchronous:(BOOL)asynchronous;
-
+- (void)openAsynchronous:(BOOL)asynchronous fromCache:(BOOL)fromCache;
 
 @end

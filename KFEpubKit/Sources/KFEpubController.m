@@ -53,11 +53,11 @@
 }
 
 
-- (void)openAsynchronous:(BOOL)asynchronous
+- (void)openAsynchronous:(BOOL)asynchronous fromCache:(BOOL)fromCache
 {
     self.extractor = [[KFEpubExtractor alloc] initWithEpubURL:self.epubURL andDestinationURL:self.destinationURL];
     self.extractor.delegate = self;
-    [self.extractor start:asynchronous];
+    [self.extractor start:asynchronous fromCache:fromCache];
 }
 
 
