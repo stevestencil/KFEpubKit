@@ -53,7 +53,7 @@
 
 - (id)initWithEpubURL:(NSURL *)epubURL andDestinationURL:(NSURL *)destinationURL;
 
-- (BOOL)start:(BOOL)asynchronous;
+- (BOOL)start:(BOOL)asynchronous fromCache:(BOOL)fromCache;
 
 - (void)cancel;
 

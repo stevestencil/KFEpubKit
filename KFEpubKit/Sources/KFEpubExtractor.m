@@ -51,7 +51,7 @@
 
 
 
-- (BOOL)start:(BOOL)asynchronous
+- (BOOL)start:(BOOL)asynchronous fromCache:(BOOL)fromCache
 {
     if (self.delegate)
     {
@@ -65,7 +65,11 @@
             __block BOOL didSucceed;
             [self.extractingQueue addOperationWithBlock:^{
                 
-                didSucceed = [SSZipArchive unzipFileAtPath:self.epubURL.path toDestination:self.destinationURL.path];
+                if (fromCache) {
+                    didSucceed = YES;
+                } else {
+                    didSucceed = [SSZipArchive unzipFileAtPath:self.epubURL.path toDestination:self.destinationURL.path];
+                }
             }];
             [self.extractingQueue addOperationWithBlock:^{
                 
@@ -79,7 +83,12 @@
         }
         else
         {
-            BOOL didSucceed = [SSZipArchive unzipFileAtPath:self.epubURL.path toDestination:self.destinationURL.path];
+            BOOL didSucceed = NO;
+            if (fromCache) {
+                didSucceed = YES;
+            } else {
+                didSucceed = [SSZipArchive unzipFileAtPath:self.epubURL.path toDestination:self.destinationURL.path];
+            }
             [self doneExtracting:@(didSucceed)];
             return YES;
         }
